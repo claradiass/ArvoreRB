@@ -47,52 +47,49 @@ public class Arvore {
 
 
     public void cor(No no){
-
-
+        No pai = no.getPai();
         if(no.getPai() == null){
             no.setEhVermelho(false);  // Garante que a raiz sempre seja preta
             return;
         }
-//        if((no.ehVermelho && !no.getPai().ehVermelho) || (!no.ehVermelho && no.getPai().ehVermelho)){
-//            return;
-//        }
 
-        if(no.getPai().ehVermelho && no.getPai().getPai().getDireita() != null && no.getPai().getPai().getDireita().ehVermelho){
-            no.getPai().setEhVermelho(false);
-            no.getPai().getPai().getDireita().setEhVermelho(false);
+        if(!no.getPai().ehVermelho){
+            return;
         }
-        if(!no.ehVermelho && !no.getPai().ehVermelho){
-            no.getPai().setEhVermelho(true);
-            if( no.getPai().getPai().getDireita() != null){
-                no.getPai().getPai().getDireita().setEhVermelho(true);
+
+
+        No tio = null;
+
+
+        if(no.getDado() < pai.getDado()){
+            if(pai.getPai().getDireita() != null){
+                tio = pai.getPai().getDireita();
+                pai.setEhVermelho(false);
+                tio.setEhVermelho(false);
             }
 
+        } else if (no.getDado() > pai.getDado()){
+            if(pai.getPai().getEsquerda() != null){
+                tio = pai.getPai().getEsquerda();
+                pai.setEhVermelho(false);
+                tio.setEhVermelho(false);
+            }
         }
 
 
-//        if(no.getPai().ehVermelho && no.getPai().getDireita().ehVermelho){
-//            no.getPai().setEhVermelho(false);
-//            no.getPai().getDireita().setEhVermelho(false);
-//            System.out.println("no.ehVermelho && no.getPai().ehVermelho" + no.getDado());
-////            if(no.getPai().getDireita() != null){
-////                no.getPai().getDireita().setEhVermelho(false);
-////            }
-//        }
-
-
-//        else {
-//            no.getPai().setEhVermelho(true);
-//            System.out.println("!no.ehVermelho && !no.getPai().ehVermelho" + no.getDado());
-////            if(no.getPai().getDireita() != null){
-////                no.getPai().getDireita().setEhVermelho(true);
-////            }
-//
-//        }
 
 
 
 
-        cor(no.getPai());
+        if(pai.ehVermelho && tio.ehVermelho){
+            pai.setEhVermelho(false);
+            tio.setEhVermelho(false);
+        }
+
+
+
+
+        cor(pai);
     }
 
 
