@@ -112,28 +112,7 @@ public class Arvore {
             rotacaoEsquerda(no.getPai().getPai());
         }
 
-
-
-
-
-
-
-
-//    } else if(no == no.getPai().getDireita() && no.getPai().getPai().getEsquerda() == no.getPai()){
-//        rotacaoEsquerda(no.getPai());
-//        rotacaoDireita(no.getPai().getPai());
-//    } else if(no == no.getPai().getEsquerda() && no.getPai().getPai().getDireita() == no.getPai()){
-//        rotacaoDireita(no.getPai());
-//        rotacaoEsquerda(no.getPai().getPai());
-//    }
-
     }
-
-
-
-
-
-
 
 
     public void rotacaoDireita(No avo){
@@ -175,15 +154,6 @@ public class Arvore {
         }
         avo.getPai().setEsquerda(avo);
     }
-
-
-
-
-
-
-
-
-
     public No getRaiz() {
         return raiz;
     }
